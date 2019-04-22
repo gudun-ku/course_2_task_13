@@ -107,4 +107,8 @@ public interface MusicDao {
     @Query("DELETE FROM albumsong where id = :albumsongId")
     int deleteAlbumSongById(int albumsongId);
 
+    //удалить связь альбома с песней по album id
+    @Query("DELETE FROM albumsong where album_id = :albumId")
+    int deleteAlbumSongsByAlbumId(int albumId);
+
 }

@@ -18,6 +18,10 @@ import com.elegion.myfirstapplication.db.AlbumSong;
 import com.elegion.myfirstapplication.db.MusicDao;
 import com.elegion.myfirstapplication.model.Album;
 import com.elegion.myfirstapplication.model.Song;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -98,8 +102,8 @@ public class DetailAlbumFragment extends Fragment implements SwipeRefreshLayout.
             .doOnSuccess(new Consumer<Album>() {
                 @Override
                 public void accept(Album album) throws Exception {
-
                     dao.insertAlbum(album);
+                    dao.deleteAlbumSongsByAlbumId(album.getId());
                     for (Song song: album.getSongs()) {
                         dao.insertSong(song);
                         dao.setLinkAlbumSongs(new AlbumSong(0,album.getId(), song.getId()));
@@ -150,7 +154,10 @@ public class DetailAlbumFragment extends Fragment implements SwipeRefreshLayout.
                         } else {
                             mErrorView.setVisibility(View.GONE);
                             mRecyclerView.setVisibility(View.VISIBLE);
-                            mSongsAdapter.addData(album.getSongs(), true);
+                            List<Song> songs = album.getSongs();
+                            // sort by id
+                            Collections.sort(songs, new SongIdComparator());
+                            mSongsAdapter.addData(songs, true);
                         }
                     }
                 }, new Consumer<Throwable>() {
@@ -181,5 +188,13 @@ public class DetailAlbumFragment extends Fragment implements SwipeRefreshLayout.
 
     private MusicDao getMusicDao() {
         return ((App) getActivity().getApplication()).getDatabase().getMusicDao();
+    }
+
+    // Comparator for list sorting
+    private class SongIdComparator implements Comparator<Song>
+    {
+        public int compare(Song left, Song right) {
+            return left.getId() - right.getId();
+        }
     }
 }
