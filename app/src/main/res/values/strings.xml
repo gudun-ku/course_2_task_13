@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MyFirstApplication</string>
+    <string name="email_hint">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="password_enter">Введите пароль</string>
+    <string name="password_enter_again">Введите пароль ещё раз</string>
+    <string name="enter">Войти</string>
+    <string name="registration">Зарегистрироваться</string>
+    <string name="input_error">Ошибка ввода данных!</string>
+    <string name="email">Email</string>
+    <string name="request_error">Ошибка выполнения запроса!</string>
+    <string name="registration_error">Ошибка регистрации!</string>
+    <string name="registration_success">Успешно!</string>
+    <string name="logout">Логаут</string>
+    <string name="auth_error">Ошибка авторизации. Неверный логин или пароль.</string>
+    <string name="name">Имя</string>
+    <string name="albums">Альбомы</string>
+
+    <string name="response_code_prefix" translatable="false">response_code_</string>
+    <string name="response_code_204">Успешная регистрация</string>
+    <string name="response_code_400">Ошибка валидации</string>
+    <string name="response_code_401">Не авторизован</string>
+    <string name="response_code_404">Объект не существует</string>
+    <string name="response_code_500">Внутренняя ошибка сервера</string>
+    <string name="email_validation_error">Неправильно введен email</string>
+    <string name="password_validation_error">Длина пароля должна быть не менее 8 символов</string>
+    <string name="retyped_password_validation_error">Пароли должны совпадать!</string>
+    <string name="username_validation_error">Имя не должно быть пустым!</string>
+    <string name="msg_no_internet">Выключено соединение с сетью</string>
+
+</resources>
